@@ -31,4 +31,4 @@ print(result)  # Returns indices of the two numbers
 Run tests to verify your solution works correctly.
 
 ## Author
-CS351 Student
+CS351 Student-1113314
