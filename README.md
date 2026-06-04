@@ -49,3 +49,35 @@ To ensure a consistent environment regardless of your OS, a `Dockerfile` is incl
 ### Build the Image:
 ```bash
 docker build -t twosum-cpp-project .
+```
+
+## ✅ Run Tests Locally
+### 使用 CMake
+```bash
+mkdir -p build
+cd build
+cmake ..
+cmake --build .
+ctest --output-on-failure
+```
+
+> Windows 使用者注意：如果電腦上尚未安裝完整 CMake/CTest，或 `ctest` 不在 PATH，
+> 則可直接執行產生的可執行檔：
+> ```bash
+> .\build\twosum_test.exe
+> ```
+>
+### 直接編譯（備援）
+```bash
+g++ -std=c++20 -Wall -Wextra -Werror src/main.cpp src/twosum.cpp -o twosum_test
+./twosum_test
+```
+
+## 🔧 GitHub Actions CI
+A GitHub Actions workflow is available at `.github/workflows/ci.yml` to build and run the tests using CMake on Ubuntu.
+
+## 🔧 Windows 環境設定
+如果您的 Windows 環境沒有 C++ 編譯器，請安裝以下工具：
+1. **CMake**: 下載並安裝 [CMake for Windows](https://cmake.org/download/)，勾選 "Add CMake to the system PATH"
+2. **MinGW GCC**: 安裝 MSYS2，然後執行 `pacman -S mingw-w64-x86_64-gcc`，並將 `C:\msys64\mingw64\bin` 添加到 PATH
+3. 使用 CMake 生成器：`cmake -G "MinGW Makefiles" ..`
