@@ -17,4 +17,4 @@ else()
 endif()
 
 enable_testing()
-add_test(NAME TwoSumTest COMMAND twosum_test)
+add_test(NAME TwoSumTest COMMAND $<TARGET_FILE:twosum_test>)
